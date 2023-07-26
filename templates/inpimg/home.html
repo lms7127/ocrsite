@@ -1,0 +1,82 @@
+<!DOCTYPE html> <!-- 문서타입 -->
+{%load static%}
+<html lang="ko"> <!-- 휴먼랭귀지 -->
+<head>
+<meta charset="utf-8"> <!-- 문자셋 -->
+<title>Read Text App</title>
+
+</head>
+<style>
+    body {
+      width: 1000px;
+      margin: 0 auto;
+    }
+     
+    .home {
+        position: absolute;
+        top:20%;
+        left:50%;
+        width:30%;
+        height:30%;
+        text-align:center;
+        transform: translate(-50%, -50%)
+        }
+    .upload {
+        position: absolute;
+        top:50%;
+        left:50%;
+        width:30%;
+        height:10%;        
+        text-align:center;
+        background-color: #FFA500;
+        transform: translate(-50%, -50%)
+        }
+    
+    a   {
+        
+        text-decoration-line: none;
+        margin: 0 ;
+        text-align: center;
+        
+        }
+
+    .result{
+        position: absolute;
+        top:80%;
+        left:50%;
+        width:30%;
+        height:30%;
+        text-align:center;
+        transform: translate(-50%, -50%)
+
+    }  
+</style>
+<body > 
+    <div class="home">
+        <h1><a href="/inpimg/">글자 읽기 앱</a></h1>
+    </div>
+	
+    <div class="upload">
+	    <a href="/upload/" name='test'  >도서 청구번호 사진으로 입력</a>
+    </div>
+
+    <div class ="result">
+    {% if profile%}
+
+    <h1> 입력 이미지 </h1> 
+    <img src="{{ profile.image.url }}"  height="300" width="300">
+
+    {% endif %}
+    
+
+    
+    {% if results%}
+    <h1> 읽은 내용  </h1> 
+        {% for r in  results%}
+        <h1> {{r}} </h1> 
+        {% endfor %}
+
+    {% endif %}
+    </div>
+</body>
+</html>
