@@ -16,7 +16,13 @@
       background-color:#e7ebea;
       font-family: 'Gowun Dodum', sans-serif;
     }
-     
+
+    .responsive-image {
+        width: 80%;
+        height: auto;
+        max-width: 1000px; /* 이미지 최대 너비 지정 */
+      }
+
     .home {
         position: absolute;
         top:20%;
@@ -24,7 +30,6 @@
         width:30%;
         height:30%;
         text-align:center;
-        
         transform: translate(-50%, -50%)
         }
    
@@ -34,39 +39,53 @@
         text-decoration-line: none;
         
         }
-
-    #test{
+     
+    .result{
         position: absolute;
         top:30%;
         left:50%;
-        width:50%;
-        height:10%;        
-        text-align:center;
-        background-color: #2cc285;
-        width: 500; 
-        height: 40px;
-        transform: translate(-50%, -50%)
-    }
-
-    .result{
-        position: absolute;
-        top:80%;
-        left:50%;
-        width:30%;
+        width:60%;
         height:30%;
-        text-align:center;
+        display: flex;
         transform: translate(-50%, -50%)
 
     }  
+    .result_img, result_txt{
+        width:60%;
+        height: 100px;
+        margin: 10px;
+    }
+
+   
+    
+    
+   
 </style>
 <body > 
-    <div class="home">
-        <h1><a href="/inpimg/" style="color:#79838d" font-family : 'Gaegu'>글자 추출 앱</a></h1>
-    </div>
-	
-	<h3><a href="/upload/" id='test'  style="color:white">이미지 입력 하기</a></h3>
     
+	<div class="home">
+        <h1><a href="/inpimg/" style="color:#79838d">다시하기</a></h1>
+    </div>
+    
+    <div class="result">
+    <div class ="result_img">
+    {% if profile%}
+    <h2> 입력 이미지 </h2> 
+    <img src="{{ profile.image.url }}"  class="responsive-image">
 
+    {% endif %}
+    </div>
+
+    <div class ="result_txt">
+    {% if results%}
+    <h2> 추출 내용  </h2> 
+        
+        {% for r in  results%}
+        <h3> {{r}} </h3> 
+        {% endfor %}
+    {% endif %}
+    </div>
+    </div>
     
 </body>
 </html>

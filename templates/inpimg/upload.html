@@ -1,20 +1,55 @@
 
 <!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Image Upload</title>
+    
 </head>
 <style>
+    body {
+        width: 1000px;
+        margin: 0 auto;
+        background-color:#e7ebea;
+        font-family: 'Gowun Dodum', sans-serif;
+      }
+
+    .home {
+        position: absolute;
+        top:20%;
+        left:50%;
+        width:30%;
+        height:30%;
+        text-align:center;
+        
+        transform: translate(-50%, -50%)
+        }
+    a   {
+        
+            text-decoration-line: none;
+        }
+       
     .country {
         position: absolute;
-        top:30%;
+        top:25%;
         left:50%;
         width:30%;
         height:10%;        
         text-align:center;
         transform: translate(-50%, -50%)
         }
+    #country{
+        position: absolute;
+        top:35%;
+        left:50%;
+        width:30%;
+        height:10%;        
+        text-align:center;
+        transform: translate(-50%, -50%)
+    }
 
     .image {
             position: absolute;
@@ -26,14 +61,98 @@
             transform: translate(-50%, -50%)
         }
 
+    .filebox .upload-name {
+            display: inline-block;
+            height: 40px;
+            padding: 0 10px;
+            vertical-align: middle;
+            border: 1px solid #dddddd;
+            width: 50%;
+            color: #999999;
+        }
+    .filebox label {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            vertical-align: middle;
+            background-color: #999999;
+            cursor: pointer;
+            height: 30px;
+            margin-left: 10px;
+        }
+    .filebox input[type="file"] {
+            position: absolute;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+        }
+
+    select {
+
+            width: 200px;
+            padding: .8em .5em;
+            
+            border: 1px solid #999;
+            
+            font-family: inherit;
+            
+            no-repeat 95% 50%;
+            
+            border-radius: 0px;
+            
+            -webkit-appearance: none;
+            
+            -moz-appearance: none;
+            
+            appearance: none;
+            
+            }
+            
+            
+select::-ms-expand {
+
+    display: none;
+    
+    }
+    
+    .upload {
+        position: absolute;
+        top:60%;
+        left:50%;
+        width:50%;
+        height:10%;        
+        text-align:center;
+        transform: translate(-50%, -50%)
+    }
+
+    .button {
+        position: absolute;
+        background-color: #999999;
+        color: #fff;
+        top:65%;
+        left:50%;
+        width:10%;
+        height:5%;        
+        text-align:center;
+        transform: translate(-50%, -50%)
+    }
+    
+        
 </style>
 <body>
-    
+    <div class="home">
+        <h1><a href="/inpimg/" style="color:#79838d">글자 추출 앱</a></h1>
+    </div>
+
+
     <form action="{% url 'upload_create' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}   
         <div class = "country"> 
-        언어 <br>
-        <select name="country" id="country">
+            <h2 style="color:black">언어 선택</h2> <br>
+        </div>
+        <select name="country" id="country" style="font-size:20px;">
             <option value="en">언어를 선택하세요</option>
             <option value="en">영어</option>
             <option value="ko">한국어</option>
@@ -46,14 +165,28 @@
         </select>
 
         </div>
-        <div class = "image">
+        <div class = "image"> 
         
-        이미지 업로드  <br>
-        <input type="file" name="image"><br>
-        <input type="submit" value="Submit" />
-        <div>
+            <h2 style="color:black">이미지 업로드</h2>  <br>
+        </div>
+    <div class = "upload">
+        <div class="filebox">
+            <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+            <label for="file">파일찾기</label> 
+            <input type="file" id="file" name="image" >
+        </div>
+    </div>
+    <br>
+        <input type="submit" value="제출하기" class="button "/>
+    
     </form>
-    
-    
+    <script src="http://code.jquery.com/jquery-latest.js"></script> 
+    <script type="text/javascript">
+    $("#file").on('change',function(){
+        var fileName = $("#file").val();
+        $(".upload-name").val(fileName);
+      });
+    </script>
+   
 </body>
 </html>
