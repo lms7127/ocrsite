@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inpimg',
     'django_cleanup.apps.CleanupConfig',
-    
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,6 +74,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ocrsite.wsgi.application'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = (
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8000",
+    "http://127.0.0.1:9000"
+)
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
