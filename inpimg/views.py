@@ -26,7 +26,7 @@ def upload(request):
 
 @csrf_exempt  
 def upload_create(request):
-    global tar
+    global tar, con, last_image
     tar+=1
     form=Profile()
     form.country=request.POST['country']
@@ -37,16 +37,6 @@ def upload_create(request):
         pass
     
     form.save()
-    
-    
-    return redirect('/inpimg/profile/')  
-
-
-@csrf_exempt  
-def profile(request):
-    global tar, con, last_image
-    
-    
     
     profile=Profile.objects.get(id=tar) 
 
@@ -79,6 +69,7 @@ def profile(request):
         results=['이미지를 다시 입력해주세요.']
         profile=None
     
-        
     return render(request,'inpimg/result.html',{'profile':profile, 'results':results})
+
+
 
